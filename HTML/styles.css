@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300..800&display=swap');
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+input {
+  outline: none;
+}
+
+body {
+  background-color: rgb(57, 57, 57)
+}
+
+.contactArea {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1080px;
+  margin: 0 auto;
+  color: white;
+  padding: 60px;
+  gap: 20px;
+}
+
+.infoTitle {
+  font-family: 'Lexend Deca', sans-serif;
+  margin-bottom: 20px;
+  font-weight: 800;
+  font-size: 24px;
+}
+
+.infoSubTitle {
+  font-family: 'Lexend Deca', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+.contactInfo,
+.contactForm {
+  flex: 1;
+}
+
+.inputForm,
+.inputMsg,
+.inputButton {
+  box-sizing: border-box;
+}
+
+.inputForm,
+.inputMsg {
+  width: 100%;
+  padding-left: 14px;
+  cursor: pointer;
+  font-size: 18px;  
+  font-family: 'Lexend Deca', sans-serif;
+  font-weight: 300;
+}
+
+.inputForm {
+  height: 54px;
+  padding-top: 18px;
+}
+
+.inputMsg {
+  height: 144px;
+  outline: none;
+  resize: none;
+  padding-top: 24px;
+}
+
+.inputButton {
+  width: 100%;
+  background-color: #f17900;
+  outline: none;
+  border: none;
+  height: 48px;
+  font-family: 'Lexend Deca', sans-serif;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.inputButton:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+.protectedInfo {
+  margin-top: 18px;
+  display: flex;
+  gap: 7px;
+  justify-content: center;
+  align-items: center;
+  color: #898989;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'Lexend Deca', sans-serif;
+}
+
+.inputGroup {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.floatingLabel {
+  position: absolute;
+  left: 14px;
+  top: 19px;
+  font-family: 'Lexend Deca', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: #6b6969;
+  transition: all 0.3s ease;
+  background-color: white;
+}
+
+.floatingLabel.active {
+  top: 8px;
+  font-size: 14px;
+}
+
+.inputMsg + .floatingLabel.active {
+  top: 8px;
+}
+
+.validateErr {
+  margin-top: 6px;
+  display: none;
+  color: #ff4444;
+  font-size: 16px;
+  font-family: 'Lexend Deca', sans-serif;
+  font-weight: 300;
+}
+
+.validateErr.show {
+  display: block;
+}
+
+.inputForm.error,
+.inputMsg.error {
+  border: 1px solid red;
+}
+
+@media (max-width: 768px) {
+  .contactArea {
+    flex-direction: column;
+    padding: 20px;
+  }
+}

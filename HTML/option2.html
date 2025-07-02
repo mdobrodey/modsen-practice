@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div class="contactArea">
+    <div class="contactInfo">
+      <h2 class="infoTitle">We are a click away</h2>
+      <p class="infoSubTitle">Tell us what business challenge we can help you resolve, 
+        and we’ll get you in touch with the tech experts best 
+        suited for consulting you on the matter.</p>
+    </div>
+    <div class="contactForm">
+      <form action="#" id="contactForm">
+        <div class="inputGroup">
+          <input class="inputForm" type="text" id="name" required/>
+          <label class="floatingLabel" for="name">Name</label>
+          <p class="validateErr" id="nameError">Name is required!</p>
+        </div>
+        <div class="inputGroup">
+          <input class="inputForm" type="email" id="email" required/>
+          <label class="floatingLabel" for="email">Corporate email</label>
+          <p class="validateErr" id="emailError">Valid email is required!</p>
+        </div>
+        <div class="inputGroup">
+          <textarea class="inputMsg" id="message"></textarea>
+          <label class="floatingLabel" for="message">What can we help you with?</label>
+          <p class="validateErr" id="messageError">Message is required!</p>
+        </div>
+        <button class="inputButton" type="submit">Send request</button>
+      </form>
+      <div class="protectedInfo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" color="gray">
+          <path fill="currentColor" d="m18.54 4.12-5.5-2.06c-.57-.21-1.5-.21-2.07 0l-5.5 2.06c-1.06.4-1.92 1.64-1.92 2.77v8.1c0 .81.53 1.88 1.18 2.36l5.5 4.11c.97.73 2.56.73 3.53 0l5.5-4.11c.65-.49 1.18-1.55 1.18-2.36v-8.1c.01-1.13-.85-2.37-1.9-2.77m-3.06 5.6-4.3 4.3c-.15.15-.34.22-.53.22s-.38-.07-.53-.22l-1.6-1.62a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l1.08 1.08 3.77-3.77c.29-.29.77-.29 1.06 0s.29.78-.01 1.07"></path>
+        </svg>
+        <p>Your information is protected</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const $ = (id) => document.getElementById(id);
+      const inputs = document.querySelectorAll('.inputForm, .inputMsg');
+      const form = $('contactForm');
+
+      inputs.forEach(input => {
+        const label = input.nextElementSibling;
+
+        input.addEventListener('focus', () => {
+          label.classList.add('active');
+        });
+
+        input.addEventListener('blur', () => {
+          if (!input.value) {
+            label.classList.remove('active');
+          }
+        });
+
+        input.addEventListener('input', () => {
+          if (input.value || input.value == '') {
+            label.classList.add('active');
+          } else {
+            label.classList.remove('active');
+          }
+
+          input.classList.remove('error');
+          input.parentElement.querySelector('.validateErr').classList.remove('show');
+        });
+      });
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const name = $('name');
+        const email = $('email');
+        const message = $('message');
+
+        document.querySelectorAll('.validateErr').forEach(err => err.classList.remove('show'));
+        document.querySelectorAll('.inputForm, .inputMsg').forEach(input => input.classList.remove('error'));
+        
+        let hasErrors = false;
+
+        if (!name.value.trim() || name.value.length < 4) {
+          $('nameError').classList.add('show');
+          name.classList.add('error');
+          hasErrors = true;
+        }
+
+        const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        if (!email.value.trim()) {
+          $('emailError').textContent = 'Email is required!';
+          $('emailError').classList.add('show');
+          email.classList.add('error');
+          hasErrors = true;
+        } else if (!emailRegex.test(email.value)) {
+          $('emailError').textContent = 'Please enter a valid email!';
+          $('emailError').classList.add('show');
+          email.classList.add('error');
+          hasErrors = true;
+        }
+
+        if (!message.value.trim()) {
+          $('messageError').classList.add('show');
+          message.classList.add('error');
+          hasErrors = true;
+        }
+
+        if (!hasErrors) {
+          alert('Form submitted');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
